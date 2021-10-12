@@ -1,0 +1,25 @@
+Consultas SQL ejecutadas en postgresql
+
+1. Listar todas las mascotas.
+
+--SELECT * FROM public.mascota;
+
+2. Listar las mascotas que no han sido adoptadas.
+
+--SELECT * FROM public.mascota where propietario is NULL ;
+
+3. Listar el número de mascotas por cada tipo de mascota.
+
+--select tipo.descripcion,count (*)from public.mascota as masco,public.tipo_mascota as tipo where masco.tipo_mascota = tipo.id_tipo group by tipo.descripcion
+
+4. Listar los propietarios que tengan más de una mascota.
+
+-- SELECT propi.nombre, count (*) as numero FROM public.mascota as masco, public.propietario as propi where masco.propietario = propi.id_propietario  group by propi.nombre having count(*) > 2;
+
+5. Listar el número de mascotas por cada tipo de mascota y por cada propietario.
+
+-- select propi.nombre,tipo.descripcion, count (*) from public.mascota as masco, public.propietario as propi, public.tipo_mascota as tipo where masco.propietario = propi.id_propietario and masco.tipo_mascota = tipo.id_tipo group by propi.nombre,tipo.descripcion
+
+6. Listas los propietarios que no tienen mascotas.
+
+-- select propi.nombre from public.propietario as propi  where not exists(select null from public.mascota as masco where  masco.propietario =propi.id_propietario)
