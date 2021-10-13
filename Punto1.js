@@ -10,3 +10,5 @@ function metodoQueHaceAlgo(valor){
 }
 
 console.log(metodoQueHaceAlgo(valor))
+
+// El resultado es 8.
